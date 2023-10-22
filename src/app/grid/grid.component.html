@@ -6,39 +6,19 @@
         <div class="column">column 4 <fa-icon [icon]="sortIcon"></fa-icon></div>
         <div class="column">column 5 <fa-icon [icon]="sortIcon"></fa-icon></div>
     </div>
-    <div class="row">
-        <div class="column">text 1</div>
-        <div class="column">text 2</div>
-        <div class="column">text 3</div>
-        <div class="column">text 4</div>
-        <div class="column">text 5</div>
-    </div>
-    <div class="row">
-        <div class="column">text 1</div>
-        <div class="column">text 2</div>
-        <div class="column">text 3</div>
-        <div class="column">text 4</div>
-        <div class="column">text 5</div>
-    </div>
-    <div class="row">
-        <div class="column">text 1</div>
-        <div class="column">text 2</div>
-        <div class="column">text 3</div>
-        <div class="column">text 4</div>
-        <div class="column">text 5</div>
-    </div>
-    <div class="row">
-        <div class="column">text 1</div>
-        <div class="column">text 2</div>
-        <div class="column">text 3</div>
-        <div class="column">text 4</div>
-        <div class="column">text 5</div>
-    </div>
-    <div class="row">
-        <div class="column">text 1</div>
-        <div class="column">text 2</div>
-        <div class="column">text 3</div>
-        <div class="column">text 4</div>
-        <div class="column">text 5</div>
-    </div>
+    <ng-container *ngIf="dataSource()?.length;else emptyState">
+        <div *ngFor="let row of dataSource()"
+             class="row">
+            <div *ngFor="let column of row"
+                 class="column">{{column}}</div>
+        </div>
+    </ng-container>
+
+    <ng-template #loading>
+        Loading...
+    </ng-template>
+
+    <ng-template #emptyState>
+        Empty state
+    </ng-template>
 </div>

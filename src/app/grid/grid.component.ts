@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { faSortUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,5 +7,7 @@ import { faSortUp } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./grid.component.scss']
 })
 export class GridComponent {
- public sortIcon = faSortUp;
+  @Input() dataSource = signal([]);
+
+  public sortIcon = faSortUp;
 }

@@ -14,7 +14,7 @@ $grid: grid;
 
 .row {
     display: grid;
-    grid-template-columns: repeat(5, minmax(300px, auto));
+    grid-template-columns: repeat(5, minmax(100px, auto));
     border-bottom: 1px solid #000;
     transition: background-color .3s;
 
