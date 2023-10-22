@@ -1,10 +1,10 @@
 import { Component, HostBinding } from '@angular/core';
 
 @Component({
-  selector: 'app-row',
+  selector: 'row',
   templateUrl: './row.component.html',
   styleUrls: ['./row.component.scss']
 })
 export class RowComponent {
-  @HostBinding('class.row') hostClass = true;
+  @HostBinding('class.grid__row') hostClass = true;
 }

@@ -1,24 +1,27 @@
-<div class="grid">
-    <div class="grid__header row">
-        <div class="column">column 1 <fa-icon [icon]="sortIcon"></fa-icon></div>
-        <div class="column">column 2 <fa-icon [icon]="sortIcon"></fa-icon></div>
-        <div class="column">column 3 <fa-icon [icon]="sortIcon"></fa-icon></div>
-        <div class="column">column 4 <fa-icon [icon]="sortIcon"></fa-icon></div>
-        <div class="column">column 5 <fa-icon [icon]="sortIcon"></fa-icon></div>
+<div class="grid"
+     [ngStyle]="{'height': height}">
+    <div [ngClass]="{'grid_sticky': isSticky}"
+         class="grid__header grid__row">
+        <header-column *ngFor="let headerColumn of headerColumns"
+                       [column]="headerColumn"></header-column>
     </div>
-    <ng-container *ngIf="dataSource()?.length;else emptyState">
-        <div *ngFor="let row of dataSource()"
-             class="row">
-            <div *ngFor="let column of row"
-                 class="column">{{column}}</div>
-        </div>
+    <ng-container *ngIf="dataSource$ | async as dataSource;else loading">
+        <ng-container *ngIf="dataSource?.length;else emptyState">
+            <row *ngFor="let row of dataSource">
+                <ng-container *ngFor="let headerColumn of headerColumns">
+                    <column>{{row[headerColumn.propName]}}</column>
+                </ng-container>
+            </row>
+        </ng-container>
     </ng-container>
 
     <ng-template #loading>
-        Loading...
+        <div class="grid__loading">
+            <fa-icon [icon]="loadingIcon"></fa-icon>
+        </div>
     </ng-template>
 
     <ng-template #emptyState>
-        Empty state
+        <div class="grid__empty-state">Empty state</div>
     </ng-template>
 </div>

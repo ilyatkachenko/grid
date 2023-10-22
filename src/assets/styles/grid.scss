@@ -1,0 +1,66 @@
+$grid: grid;
+
+.#{$grid} {
+    display: grid;
+    overflow: auto;
+    position: relative;
+
+    &__header {
+        border-bottom: 2px solid #000 !important;
+        background: #fff;
+
+        &.#{$grid}_sticky {
+            position: sticky;
+            top: 0;
+        }
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-bottom: 1px solid #000;
+        transition: background-color .3s;
+        height: 80px;
+
+        &:not(.#{$grid}__header) {
+            &:hover {
+                background-color: rgba(217, 213, 213, 0.445);
+            }
+        }
+    }
+
+    &__column {
+        display: flex;
+        align-items: center;
+        padding: 30px 40px;
+    }
+
+    &__empty-state {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 500px;
+        width: 100%;
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+    &__loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 120px;
+        animation: spin 2s infinite cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

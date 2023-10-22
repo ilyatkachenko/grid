@@ -4,7 +4,7 @@ import { GridComponent } from './grid.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RowComponent } from './row/row.component';
 import { ColumnComponent } from './column/column.component';
-import { GridHeaderComponent } from './grid-header/grid-header.component';
+import { HeaderColumnComponent } from './header-column/header-column.component';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { GridHeaderComponent } from './grid-header/grid-header.component';
     GridComponent,
     RowComponent,
     ColumnComponent,
-    GridHeaderComponent
+    HeaderColumnComponent,
   ],
   imports: [
     CommonModule,
@@ -22,7 +22,7 @@ import { GridHeaderComponent } from './grid-header/grid-header.component';
     GridComponent,
     RowComponent,
     ColumnComponent,
-    GridHeaderComponent
+    HeaderColumnComponent,
   ]
 })
 export class GridModule { }
