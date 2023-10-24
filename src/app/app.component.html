@@ -2,5 +2,13 @@
     <grid [dataSource]="clients$"
           [headerColumns]="headerColumns"
           [isSticky]="true"
-          height="calc(100vh - 200px)"></grid>
+          height="calc(100vh - 200px)">
+          <ng-template #rowTemplate let-dataSource>
+            <row *ngFor="let row of dataSource">
+                <ng-container *ngFor="let headerColumn of headerColumns">
+                    <column>{{row[headerColumn.propName]}} custom</column>
+                </ng-container>
+            </row>
+          </ng-template>
+    </grid>
 </div>

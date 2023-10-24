@@ -1,1 +1,9 @@
-<div class="grid__column">{{column.title}} <fa-icon [icon]="sortIcon"></fa-icon></div>
+<div class="grid__column"
+     [ngClass]="{
+        'grid__column_active': isSortingActive
+    }"
+     (click)="sorting()">{{column.title}}
+    <fa-icon *ngIf="column?.isSorting"
+             [icon]="sortIcon"
+             class="grid__sorting"></fa-icon>
+</div>

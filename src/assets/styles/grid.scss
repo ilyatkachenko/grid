@@ -1,7 +1,8 @@
 $grid: grid;
 
 .#{$grid} {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     overflow: auto;
     position: relative;
 
@@ -13,14 +14,24 @@ $grid: grid;
             position: sticky;
             top: 0;
         }
+
+        .#{$grid}__column {
+            cursor: pointer;
+
+            &_active,
+            &:hover {
+                .#{$grid}__sorting {
+                    opacity: 1;
+                }
+            }
+        }
     }
 
     &__row {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
         border-bottom: 1px solid #000;
         transition: background-color .3s;
-        height: 80px;
+        height: 50px;
 
         &:not(.#{$grid}__header) {
             &:hover {
@@ -29,10 +40,16 @@ $grid: grid;
         }
     }
 
+    header-column,
+    .#{$grid}__column {
+        flex: 1;
+    }
+
     &__column {
-        display: flex;
-        align-items: center;
-        padding: 30px 40px;
+        padding: 15px 40px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     &__empty-state {
@@ -52,6 +69,12 @@ $grid: grid;
         transform: translate(-50%, -50%);
         font-size: 120px;
         animation: spin 2s infinite cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    &__sorting {
+        margin-left: 20px;
+        opacity: 0;
+        transition: opacity .3s;
     }
 }
 

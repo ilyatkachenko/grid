@@ -16,19 +16,23 @@ export class AppComponent {
   headerColumns: IHeaderColumn[] = [
     {
       title: 'First name',
-      propName: 'first_name'
+      propName: 'first_name',
+      isSorting: true
     },
     {
       title: 'Last name',
-      propName: 'last_name'
+      propName: 'last_name',
+      isSorting: true
     },
     {
       title: 'Email',
-      propName: 'email'
+      propName: 'email',
+      isSorting: true
     },
     {
       title: 'Totem animal',
-      propName: 'animal'
+      propName: 'animal',
+      isSorting: true
     }
   ];
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { IHeaderColumn } from './header-column/header-column.component';
 import { Observable, isObservable, of } from 'rxjs';
@@ -9,7 +9,8 @@ import { Observable, isObservable, of } from 'rxjs';
   styleUrls: ['./grid.component.scss']
 })
 export class GridComponent implements OnInit {
-  @Input() dataSource!: unknown[] | Observable<unknown[]>;
+  @ContentChild('rowTemplate') rowTemplate!: TemplateRef<unknown>;
+  @Input() dataSource!: any[] | Observable<any[]>;
   @Input() headerColumns: IHeaderColumn[] = [];
   @Input() isSticky = false;
   @Input() height!: string;
@@ -18,7 +19,6 @@ export class GridComponent implements OnInit {
   public loadingIcon = faSpinner;
 
   public ngOnInit(): void {
-    this.dataSource$ =  isObservable(this.dataSource) ? this.dataSource : of(this.dataSource);
-    console.log(this.dataSource);
+    this.dataSource$ = isObservable(this.dataSource) ? this.dataSource : of(this.dataSource);
   }
 }

@@ -7,11 +7,16 @@
     </div>
     <ng-container *ngIf="dataSource$ | async as dataSource;else loading">
         <ng-container *ngIf="dataSource?.length;else emptyState">
-            <row *ngFor="let row of dataSource">
-                <ng-container *ngFor="let headerColumn of headerColumns">
-                    <column>{{row[headerColumn.propName]}}</column>
-                </ng-container>
-            </row>
+            <ng-container *ngTemplateOutlet="rowTemplate || defaultTemplate;context:{$implicit: dataSource}"></ng-container>
+
+            <ng-template #defaultTemplate
+                         let-dataSource>
+                <row *ngFor="let row of dataSource">
+                    <ng-container *ngFor="let headerColumn of headerColumns">
+                        <column>{{row[headerColumn.propName]}}</column>
+                    </ng-container>
+                </row>
+            </ng-template>
         </ng-container>
     </ng-container>
 
